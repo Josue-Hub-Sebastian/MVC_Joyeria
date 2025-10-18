@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow">
+            <div class="card-header text-center bg-primary text-white">
+                <h4><i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</h4>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle"></i> @ViewBag.Error
+                    </div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">
+                            <i class="bi bi-envelope"></i> Email
+                        </label>
+                        <input type="email" class="form-control" id="email" name="email" required
+                               placeholder="tu@email.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            <i class="bi bi-lock"></i> Contraseña
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" required
+                               placeholder="Tu contraseña">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mb-3">
+                        <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    <p class="mb-0">¿No tienes cuenta?</p>
+                    <a asp-action="Registro" class="btn btn-outline-secondary">
+                        <i class="bi bi-person-plus"></i> Registrarse
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

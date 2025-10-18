@@ -1,0 +1,135 @@
+﻿@model IEnumerable<mvc_purple.Models.Producto>
+
+@{
+    ViewData["Title"] = "Gestión de Productos";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>
+                <i class="bi bi-bag"></i> Gestión de Productos
+            </h2>
+            <a asp-action="CrearProducto" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Nuevo Producto
+            </a>
+        </div>
+        <hr />
+    </div>
+</div>
+
+@if (Model?.Any() == true)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Lista de Productos</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                    <th>Estado</th>
+                                    <th>Fecha Creación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var producto in Model)
+                                {
+                                    <tr class="@(!producto.Disponible ? "table-secondary" : "")">
+                                        <td><strong>@producto.Id</strong></td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(producto.ImagenUrl))
+                                            {
+                                                <img src="@producto.ImagenUrl" alt="@producto.Nombre"
+                                                     class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                                            }
+                                            else
+                                            {
+                                                <div class="bg-light d-flex align-items-center justify-content-center"
+                                                     style="width: 50px; height: 50px;">
+                                                    <i class="bi bi-image text-muted"></i>
+                                                </div>
+                                            }
+                                        </td>
+                                        <td>
+                                            <strong>@producto.Nombre</strong><br>
+                                            <small class="text-muted">@(producto.Descripcion?.Length > 50 ? producto.Descripcion.Substring(0, 50) + "..." : producto.Descripcion)</small>
+                                        </td>
+                                        <td><strong>$@producto.Precio.ToString("N2")</strong></td>
+                                        <td>
+                                            @if (producto.Stock <= 5 && producto.Stock > 0)
+                                            {
+                                                <span class="badge bg-warning">@producto.Stock</span>
+                                            }
+                                            else if (producto.Stock == 0)
+                                            {
+                                                <span class="badge bg-danger">Sin Stock</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-success">@producto.Stock</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (producto.Disponible)
+                                            {
+                                                <span class="badge bg-success">Disponible</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">No Disponible</span>
+                                            }
+                                        </td>
+                                        <td>@producto.FechaCreacion.ToString("dd/MM/yyyy")</td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a asp-action="EditarProducto" asp-route-id="@producto.Id"
+                                                   class="btn btn-outline-primary" title="Editar">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <form asp-action="EliminarProducto" method="post" class="d-inline">
+                                                    <input type="hidden" name="id" value="@producto.Id" />
+                                                    <button type="submit" class="btn btn-outline-danger"
+                                                            title="Eliminar"
+                                                            onclick="return confirm('¿Está seguro de eliminar este producto?')">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <div class="mb-4">
+                    <i class="bi bi-bag-x text-muted" style="font-size: 4rem;"></i>
+                </div>
+                <h3>No hay productos</h3>
+                <p class="text-muted">Comienza agregando tu primer producto</p>
+                <a asp-action="CrearProducto" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Crear Primer Producto
+                </a>
+            </div>
+        </div>
+    </div>
+}
