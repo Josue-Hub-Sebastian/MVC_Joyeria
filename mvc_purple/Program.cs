@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using mvc_purple.Services;
@@ -25,17 +26,30 @@ builder.Services.AddSession(options =>
 builder.Services.AddHttpContextAccessor();
 
 // ================================
+// 🔐 AUTENTICACIÓN POR COOKIES
+// ================================
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Cliente/Login";
+        options.LogoutPath = "/Cliente/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromHours(8);
+        options.SlidingExpiration = true;
+        options.Cookie.Name = "PurpleSkyAuth";
+    });
+
+// ================================
 // CONFIGURACIÓN DE CONEXIÓN API
 // ================================
 
-// 🔸 Base URL del API (ajustada a tu API que corre en HTTP)
+// 🔸 Base URL del API
 var apiBase = builder.Configuration.GetValue<string>("Api:BaseUrl")?.TrimEnd('/')
               ?? "http://localhost:5229";
 
 // 🔸 Token handler (adjunta Authorization header si hay token en sesión)
 builder.Services.AddTransient<TokenHandler>();
 
-// 🔸 HttpClient por servicio (cada uno usa TokenHandler para enviar token JWT)
+// 🔸 HttpClient para cada servicio (con TokenHandler)
 builder.Services.AddHttpClient<IProductoApiService, ProductoApiService>(c =>
 {
     c.BaseAddress = new Uri(apiBase + "/api/");
@@ -43,7 +57,6 @@ builder.Services.AddHttpClient<IProductoApiService, ProductoApiService>(c =>
 })
 .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
 {
-    // 🔧 Aceptar cualquier certificado (por si algún día cambias a HTTPS)
     ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
 })
 .AddHttpMessageHandler<TokenHandler>();
@@ -81,16 +94,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// 🔹 No redirigimos a HTTPS porque tu API está en HTTP
-// app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // No la usas si tu API está en HTTP
 
 app.UseStaticFiles();
 
 app.UseRouting();
 
-// 🔹 Session antes de autorización
+// 🔹 Middleware orden correcto
 app.UseSession();
-
+app.UseAuthentication();  // ✅ necesario antes de UseAuthorization
 app.UseAuthorization();
 
 app.MapControllerRoute(

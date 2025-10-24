@@ -11,5 +11,6 @@ namespace mvc_purple.Services
         Task<bool> UpdateAsync(Cliente c);
         Task<bool> DeleteAsync(int id);
         Task LogoutAsync();
+        Cliente? GetClienteActivo();
     }
 }

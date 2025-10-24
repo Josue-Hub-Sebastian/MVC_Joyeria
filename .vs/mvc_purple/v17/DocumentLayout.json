@@ -1,0 +1,261 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\data\\joyeriadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\data\\joyeriadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\views\\admin\\crearproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\admin\\crearproducto.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\services\\clienteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\services\\clienteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\views\\cliente\\mispedidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\cliente\\mispedidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\views\\cliente\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\cliente\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\services\\iclienteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\services\\iclienteapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\services\\productoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\services\\productoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\services\\iproductoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\services\\iproductoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|c:\\users\\user\\downloads\\proyecto efsrt\\mvc_joyeria\\mvc_purple\\views\\cliente\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\cliente\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JoyeriaDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Data\\JoyeriaDbContext.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Data\\JoyeriaDbContext.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Data\\JoyeriaDbContext.cs",
+              "RelativeToolTip": "mvc_purple\\Data\\JoyeriaDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T20:11:51.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "mvc_purple\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T20:06:26.209Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClienteApiService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\ClienteApiService.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Services\\ClienteApiService.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\ClienteApiService.cs",
+              "RelativeToolTip": "mvc_purple\\Services\\ClienteApiService.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAADwv2gAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:06:00.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClienteController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Controllers\\ClienteController.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Controllers\\ClienteController.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Controllers\\ClienteController.cs",
+              "RelativeToolTip": "mvc_purple\\Controllers\\ClienteController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAmwEMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:42:28.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "mvc_purple\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAcwHsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:45:38.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Program.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Program.cs",
+              "RelativeToolTip": "mvc_purple\\Program.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAwHAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T04:06:00.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CrearProducto.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Admin\\CrearProducto.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Admin\\CrearProducto.cshtml",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Admin\\CrearProducto.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Admin\\CrearProducto.cshtml",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T00:51:18.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAAoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-20T00:51:41.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IClienteApiService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\IClienteApiService.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Services\\IClienteApiService.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\IClienteApiService.cs",
+              "RelativeToolTip": "mvc_purple\\Services\\IClienteApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:12:48.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\Login.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Cliente\\Login.cshtml",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\Login.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Cliente\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-19T03:08:04.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MisPedidos.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-19T03:08:03.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Models\\Cliente.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Models\\Cliente.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Models\\Cliente.cs",
+              "RelativeToolTip": "mvc_purple\\Models\\Cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:21:37.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IProductoApiService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\IProductoApiService.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Services\\IProductoApiService.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\IProductoApiService.cs",
+              "RelativeToolTip": "mvc_purple\\Services\\IProductoApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:35:00.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProductoApiService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\ProductoApiService.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Services\\ProductoApiService.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Services\\ProductoApiService.cs",
+              "RelativeToolTip": "mvc_purple\\Services\\ProductoApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:35:03.386Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Registro.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\Registro.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Cliente\\Registro.cshtml",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Proyecto EFSRT\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\Registro.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Cliente\\Registro.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-19T03:08:06.391Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

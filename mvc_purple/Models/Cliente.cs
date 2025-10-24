@@ -8,18 +8,18 @@ namespace mvc_purple.Models
 
         [Required(ErrorMessage = "El nombre es obligatorio")]
         [StringLength(100, ErrorMessage = "El nombre no puede exceder 100 caracteres")]
-        public required string Nombre { get; set; }
+        public string Nombre { get; set; }
 
         [Required(ErrorMessage = "El email es obligatorio")]
         [EmailAddress(ErrorMessage = "Email inválido")]
-        public required string Email { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "La contraseña es obligatoria")]
         [StringLength(255)]
-        public required string Password { get; set; }
+        public string Password { get; set; }
 
         [StringLength(200)]
-        public required string Direccion { get; set; }
+        public string Direccion { get; set; }
 
         public bool EsAdmin { get; set; } = false;
 

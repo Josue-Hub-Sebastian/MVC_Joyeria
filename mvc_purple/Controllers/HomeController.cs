@@ -1,28 +1,34 @@
-using Microsoft.AspNetCore.Mvc;
+Ôªøusing Microsoft.AspNetCore.Mvc;
 using mvc_purple.Extensions;
 using mvc_purple.Models;
 using mvc_purple.Services;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace mvc_purple.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IProductoApiService _productoService;
+        private readonly IClienteApiService _clienteService;
 
-        public HomeController(IProductoApiService productoService)
+        public HomeController(IProductoApiService productoService, IClienteApiService clienteService)
         {
             _productoService = productoService;
+            _clienteService = clienteService;
         }
 
-        // P·gina principal - Cat·logo de productos
+        // P√°gina principal - Cat√°logo de productos
         public async Task<IActionResult> Index()
         {
+            // üîπ Verificar si hay un cliente activo en sesi√≥n
+            var cliente = _clienteService.GetClienteActivo();
+            ViewBag.ClienteActivo = cliente;
+
             // Obtener productos desde el API
             var productos = await _productoService.GetAllAsync();
 
-            // Filtrar solo disponibles y con stock > 0
             var disponibles = productos
                 .Where(p => p.Disponible && p.Stock > 0)
                 .OrderBy(p => p.Nombre)
@@ -34,20 +40,27 @@ namespace mvc_purple.Controllers
         // Detalle de un producto
         public async Task<IActionResult> Detalle(int id)
         {
-            var producto = await _productoService.GetByIdAsync(id);
+            var cliente = _clienteService.GetClienteActivo();
+            ViewBag.ClienteActivo = cliente;
 
+            var producto = await _productoService.GetByIdAsync(id);
             if (producto == null || !producto.Disponible)
-            {
                 return NotFound();
-            }
 
             return View(producto);
         }
 
-        // Agregar al carrito (usando sesiones)
+        // Agregar al carrito
         [HttpPost]
         public async Task<IActionResult> AgregarAlCarrito(int productoId, int cantidad = 1)
         {
+            var cliente = _clienteService.GetClienteActivo();
+            if (cliente == null)
+            {
+                TempData["Error"] = "Debes iniciar sesi√≥n para agregar productos al carrito.";
+                return RedirectToAction("Login", "Cliente");
+            }
+
             var producto = await _productoService.GetByIdAsync(productoId);
 
             if (producto == null || !producto.Disponible || producto.Stock < cantidad)
@@ -56,19 +69,14 @@ namespace mvc_purple.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Obtener carrito de la sesiÛn
             var carrito = HttpContext.Session.GetObjectFromJson<List<ItemCarrito>>("Carrito")
                          ?? new List<ItemCarrito>();
 
-            // Verificar si el producto ya est· en el carrito
             var itemExistente = carrito.FirstOrDefault(i => i.ProductoId == productoId);
 
             if (itemExistente != null)
-            {
                 itemExistente.Cantidad += cantidad;
-            }
             else
-            {
                 carrito.Add(new ItemCarrito
                 {
                     ProductoId = productoId,
@@ -76,11 +84,8 @@ namespace mvc_purple.Controllers
                     Precio = producto.Precio,
                     Cantidad = cantidad
                 });
-            }
 
-            // Guardar carrito en sesiÛn
             HttpContext.Session.SetObjectAsJson("Carrito", carrito);
-
             TempData["Success"] = $"{producto.Nombre} agregado al carrito";
             return RedirectToAction("Index");
         }
@@ -88,6 +93,10 @@ namespace mvc_purple.Controllers
         // Ver carrito
         public IActionResult Carrito()
         {
+            var cliente = _clienteService.GetClienteActivo();
+            if (cliente == null)
+                return RedirectToAction("Login", "Cliente");
+
             var carrito = HttpContext.Session.GetObjectFromJson<List<ItemCarrito>>("Carrito")
                          ?? new List<ItemCarrito>();
 
@@ -108,16 +117,7 @@ namespace mvc_purple.Controllers
             return RedirectToAction("Carrito");
         }
 
-        // P·gina de acceso denegado
-        public IActionResult AccessDenied()
-        {
-            return View();
-        }
-
-        // P·gina de error
-        public IActionResult Error()
-        {
-            return View();
-        }
+        public IActionResult AccessDenied() => View();
+        public IActionResult Error() => View();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using mvc_purple.Models;
 using mvc_purple.Services;
+using System.Text.Json;
 
 namespace mvc_purple.Controllers
 {
@@ -29,10 +30,20 @@ namespace mvc_purple.Controllers
                 ModelState.AddModelError("", "No se pudo registrar al cliente.");
                 return View(c);
             }
+
+            TempData["Success"] = "Registro exitoso. Ahora puedes iniciar sesión.";
             return RedirectToAction("Login");
         }
 
-        public IActionResult Login() => View();
+        public IActionResult Login()
+        {
+            // Si ya hay sesión activa, redirige al home
+            var clienteActivo = HttpContext.Session.GetString("ClienteActivo");
+            if (!string.IsNullOrEmpty(clienteActivo))
+                return RedirectToAction("Index", "Home");
+
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -51,13 +62,14 @@ namespace mvc_purple.Controllers
                 return View();
             }
 
-            // token almacenado en sesión por ClienteApiService
+            TempData["Success"] = "Inicio de sesión exitoso.";
             return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Logout()
         {
             await _clienteService.LogoutAsync();
+            TempData["Success"] = "Sesión cerrada correctamente.";
             return RedirectToAction("Index", "Home");
         }
 
