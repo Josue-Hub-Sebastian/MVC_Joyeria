@@ -1,0 +1,168 @@
+﻿@model mvc_purple.Models.Producto
+
+@{
+    ViewData["Title"] = "Crear Producto";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>
+                <i class="bi bi-plus-circle"></i> Crear Nuevo Producto
+            </h2>
+            <a asp-action="Productos" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Volver a Productos
+            </a>
+        </div>
+        <hr />
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Información del Producto</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="CrearProducto" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Nombre" class="form-label">
+                                <i class="bi bi-tag"></i> Nombre del Producto *
+                            </label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Ej: Anillo de Oro 18k" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Precio" class="form-label">
+                                <i class="bi bi-currency-dollar"></i> Precio *
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input asp-for="Precio" type="number" step="0.01" class="form-control" placeholder="0.00" />
+                            </div>
+                            <span asp-validation-for="Precio" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Stock" class="form-label">
+                                <i class="bi bi-boxes"></i> Stock Inicial *
+                            </label>
+                            <input asp-for="Stock" type="number" class="form-control" placeholder="0" min="0" />
+                            <span asp-validation-for="Stock" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ImagenUrl" class="form-label">
+                                <i class="bi bi-image"></i> URL de Imagen
+                            </label>
+                            <input asp-for="ImagenUrl" class="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+                            <span asp-validation-for="ImagenUrl" class="text-danger"></span>
+                            <div class="form-text">Opcional: URL de la imagen del producto</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Descripcion" class="form-label">
+                            <i class="bi bi-chat-text"></i> Descripción
+                        </label>
+                        <textarea asp-for="Descripcion" class="form-control" rows="4"
+                                  placeholder="Descripción detallada del producto..."></textarea>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check">
+                                <input asp-for="Disponible" class="form-check-input" type="checkbox" checked />
+                                <label asp-for="Disponible" class="form-check-label">
+                                    <i class="bi bi-check-circle"></i> Producto disponible para venta
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Productos" class="btn btn-outline-secondary me-md-2">
+                            <i class="bi bi-x-circle"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> Crear Producto
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Vista previa -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="bi bi-eye"></i> Vista Previa</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="preview-image" class="bg-light d-flex align-items-center justify-content-center"
+                             style="height: 200px; border: 1px solid #dee2e6;">
+                            <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 id="preview-name">Nombre del producto</h5>
+                        <p id="preview-description" class="text-muted">Descripción del producto</p>
+                        <h4 id="preview-price" class="text-primary">$0.00</h4>
+                        <span id="preview-stock" class="badge bg-secondary">Stock: 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Vista previa en tiempo real
+        document.addEventListener('DOMContentLoaded', function() {
+            const nombreInput = document.querySelector('input[name="Nombre"]');
+            const descripcionInput = document.querySelector('textarea[name="Descripcion"]');
+            const precioInput = document.querySelector('input[name="Precio"]');
+            const stockInput = document.querySelector('input[name="Stock"]');
+            const imagenInput = document.querySelector('input[name="ImagenUrl"]');
+
+            const previewName = document.getElementById('preview-name');
+            const previewDescription = document.getElementById('preview-description');
+            const previewPrice = document.getElementById('preview-price');
+            const previewStock = document.getElementById('preview-stock');
+            const previewImage = document.getElementById('preview-image');
+
+            function updatePreview() {
+                previewName.textContent = nombreInput.value || 'Nombre del producto';
+                previewDescription.textContent = descripcionInput.value || 'Descripción del producto';
+                previewPrice.textContent = ' + (parseFloat(precioInput.value) || 0).toFixed(2);
+                previewStock.textContent = 'Stock: ' + (stockInput.value || '0');
+
+                if (imagenInput.value) {
+                    previewImage.innerHTML = `<img src="${imagenInput.value}" style="max-width: 100%; max-height: 100%; object-fit: cover;" onerror="this.style.display='none'">`;
+                } else {
+                    previewImage.innerHTML = '<i class="bi bi-image text-muted" style="font-size: 3rem;"></i>';
+                }
+            }
+
+            nombreInput.addEventListener('input', updatePreview);
+            descripcionInput.addEventListener('input', updatePreview);
+            precioInput.addEventListener('input', updatePreview);
+            stockInput.addEventListener('input', updatePreview);
+            imagenInput.addEventListener('input', updatePreview);
+        });
+    </script>
+}

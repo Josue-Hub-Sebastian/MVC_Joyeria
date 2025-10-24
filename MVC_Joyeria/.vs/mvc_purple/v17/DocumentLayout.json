@@ -1,0 +1,240 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\views\\cliente\\mispedidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\cliente\\mispedidos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\services\\pedidoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\services\\pedidoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\services\\ipedidoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\services\\ipedidoapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\models\\dtos\\pedidoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\models\\dtos\\pedidoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\controllers\\pedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\controllers\\pedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\models\\dtos\\pedidorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\models\\dtos\\pedidorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\models\\detallepedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\models\\detallepedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\views\\pedido\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\views\\pedido\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|d:\\efsrt 4\\mvcnuevo\\mvc_joyeria\\mvc_purple\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E071FA82-37DC-4EF6-9EFA-D8258E066E9C}|mvc_purple\\mvc_purple.csproj|solutionrelative:mvc_purple\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 151,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAswHUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T14:25:51.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PedidoResponse.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\DTOs\\PedidoResponse.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Models\\DTOs\\PedidoResponse.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\DTOs\\PedidoResponse.cs",
+              "RelativeToolTip": "mvc_purple\\Models\\DTOs\\PedidoResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T14:18:55.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PedidoApiService.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Services\\PedidoApiService.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Services\\PedidoApiService.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Services\\PedidoApiService.cs",
+              "RelativeToolTip": "mvc_purple\\Services\\PedidoApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T14:14:04.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClienteController.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Controllers\\ClienteController.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Controllers\\ClienteController.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Controllers\\ClienteController.cs",
+              "RelativeToolTip": "mvc_purple\\Controllers\\ClienteController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T06:37:52.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MisPedidos.cshtml",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Cliente\\MisPedidos.cshtml",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAwwKQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T06:31:35.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IPedidoApiService.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Services\\IPedidoApiService.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Services\\IPedidoApiService.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Services\\IPedidoApiService.cs",
+              "RelativeToolTip": "mvc_purple\\Services\\IPedidoApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T06:27:46.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PedidoRequest.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\DTOs\\PedidoRequest.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Models\\DTOs\\PedidoRequest.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\DTOs\\PedidoRequest.cs",
+              "RelativeToolTip": "mvc_purple\\Models\\DTOs\\PedidoRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T06:26:00.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Pedido.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\Pedido.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Models\\Pedido.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\Pedido.cs",
+              "RelativeToolTip": "mvc_purple\\Models\\Pedido.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T06:24:56.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Views\\Pedido\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "mvc_purple\\Views\\Pedido\\Checkout.cshtml",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Views\\Pedido\\Checkout.cshtml",
+              "RelativeToolTip": "mvc_purple\\Views\\Pedido\\Checkout.cshtml",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAUwHoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T06:20:38.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DetallePedido.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\DetallePedido.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Models\\DetallePedido.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Models\\DetallePedido.cs",
+              "RelativeToolTip": "mvc_purple\\Models\\DetallePedido.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAIwBQAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T06:17:11.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "mvc_purple\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAtwBUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T05:30:47.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PedidoController.cs",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Controllers\\PedidoController.cs",
+              "RelativeDocumentMoniker": "mvc_purple\\Controllers\\PedidoController.cs",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\Controllers\\PedidoController.cs",
+              "RelativeToolTip": "mvc_purple\\Controllers\\PedidoController.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAUwHEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-24T05:43:47.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\appsettings.json",
+              "RelativeDocumentMoniker": "mvc_purple\\appsettings.json",
+              "ToolTip": "D:\\EFSRT 4\\mvcNuevo\\MVC_Joyeria\\mvc_purple\\appsettings.json",
+              "RelativeToolTip": "mvc_purple\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-24T04:59:08.415Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+﻿@model IEnumerable<mvc_purple.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Mis Pedidos";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>
+            <i class="bi bi-clock-history"></i> Mi Historial de Pedidos
+        </h2>
+        <hr />
+    </div>
+</div>
+
+@if (Model?.Any() == true)
+{
+    <div class="row">
+        @foreach (var pedido in Model)
+        {
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">
+                            <i class="bi bi-receipt"></i> Pedido #@pedido.Id
+                        </h6>
+                        @switch (pedido.Estado)
+                        {
+                            case "Pendiente":
+                                <span class="badge bg-warning">@pedido.Estado</span>
+                                break;
+                            case "Confirmado":
+                                <span class="badge bg-info">@pedido.Estado</span>
+                                break;
+                            case "Enviado":
+                                <span class="badge bg-primary">@pedido.Estado</span>
+                                break;
+                            case "Entregado":
+                                <span class="badge bg-success">@pedido.Estado</span>
+                                break;
+                            case "Cancelado":
+                                <span class="badge bg-danger">@pedido.Estado</span>
+                                break;
+                            default:
+                                <span class="badge bg-secondary">@pedido.Estado</span>
+                                break;
+                        }
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <small class="text-muted">Fecha:</small><br>
+                                <strong>@pedido.FechaPedido.ToString("dd/MM/yyyy")</strong>
+                            </div>
+                            <div class="col-6 text-end">
+                                <small class="text-muted">Total:</small><br>
+                                <h5 class="text-primary mb-0">$@pedido.Total.ToString("N2")</h5>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <small class="text-muted">Productos (@pedido.Detalles.Count()):</small><br>
+                            @foreach (var detalle in pedido.Detalles.Take(2))
+                            {
+                                <span class="badge bg-light text-dark me-1">@detalle.Producto.Nombre x@detalle.Cantidad</span>
+                            }
+                            @if (pedido.Detalles.Count() > 2)
+                            {
+                                <span class="badge bg-secondary">+@(pedido.Detalles.Count() - 2) más</span>
+                            }
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(pedido.DireccionEnvio))
+                        {
+                            <div class="mb-3">
+                                <small class="text-muted">Dirección de envío:</small><br>
+                                <small>@pedido.DireccionEnvio</small>
+                            </div>
+                        }
+
+                        <!-- Tracking de estado -->
+                        <div class="mb-3">
+                            <div class="progress" style="height: 8px;">
+                                @{
+                                    var progreso = pedido.Estado switch
+                                    {
+                                        "Pendiente" => 25,
+                                        "Confirmado" => 50,
+                                        "Enviado" => 75,
+                                        "Entregado" => 100,
+                                        "Cancelado" => 0,
+                                        _ => 0
+                                    };
+                                    var colorClass = pedido.Estado == "Cancelado" ? "bg-danger" : "bg-primary";
+                                }
+                                <div class="progress-bar @colorClass" style="width: @progreso%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-1">
+                                <small class="text-muted">Pendiente</small>
+                                <small class="text-muted">Confirmado</small>
+                                <small class="text-muted">Enviado</small>
+                                <small class="text-muted">Entregado</small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="bi bi-clock"></i> @pedido.FechaPedido.ToString("HH:mm")
+                            </small>
+                            <button class="btn btn-sm btn-outline-primary" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#detalle-@pedido.Id">
+                                <i class="bi bi-eye"></i> Ver Detalle
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Detalle colapsable -->
+                    <div class="collapse" id="detalle-@pedido.Id">
+                        <div class="card-footer">
+                            <h6>Detalle del Pedido:</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var detalle in pedido.Detalles)
+                                        {
+                                            <tr>
+                                                <td>@detalle.Producto.Nombre</td>
+                                                <td>@detalle.Cantidad</td>
+                                                <td>$@detalle.PrecioUnitario.ToString("N2")</td>
+                                                <td>$@detalle.Subtotal.ToString("N2")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(pedido.Observaciones))
+                            {
+                                <div class="mt-2">
+                                    <small><strong>Observaciones:</strong> @pedido.Observaciones</small>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <div class="mb-4">
+                    <i class="bi bi-cart-x text-muted" style="font-size: 4rem;"></i>
+                </div>
+                <h3>No tienes pedidos aún</h3>
+                <p class="text-muted">¡Explora nuestro catálogo y realiza tu primera compra!</p>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                    <i class="bi bi-bag"></i> Ver Productos
+                </a>
+            </div>
+        </div>
+    </div>
+}

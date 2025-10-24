@@ -1,0 +1,354 @@
+﻿@model mvc_purple.Models.Pedido
+
+@{
+    ViewData["Title"] = $"Detalle Pedido #{Model.Id}";
+}
+
+<div class="row">
+    <div class="col-12 mb-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-action="Index" class="text-decoration-none">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-action="Pedidos" class="text-decoration-none">
+                        <i class="bi bi-clipboard-check"></i> Pedidos
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Pedido #@Model.Id</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>
+                <i class="bi bi-receipt"></i> Detalle del Pedido #@Model.Id
+            </h2>
+            <div>
+                @switch (Model.Estado)
+                {
+                    case "Pendiente":
+                        <span class="badge bg-warning fs-6">@Model.Estado</span>
+                        break;
+                    case "Confirmado":
+                        <span class="badge bg-info fs-6">@Model.Estado</span>
+                        break;
+                    case "Enviado":
+                        <span class="badge bg-primary fs-6">@Model.Estado</span>
+                        break;
+                    case "Entregado":
+                        <span class="badge bg-success fs-6">@Model.Estado</span>
+                        break;
+                    case "Cancelado":
+                        <span class="badge bg-danger fs-6">@Model.Estado</span>
+                        break;
+                    default:
+                        <span class="badge bg-secondary fs-6">@Model.Estado</span>
+                        break;
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Información del Cliente -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-person-circle"></i> Información del Cliente
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <strong>Nombre:</strong>
+                    </div>
+                    <div class="col-8">
+                        @Model.Cliente.Nombre
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <strong>Email:</strong>
+                    </div>
+                    <div class="col-8">
+                        <a href="mailto:@Model.Cliente.Email" class="text-decoration-none">
+                            @Model.Cliente.Email
+                        </a>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <strong>Dirección:</strong>
+                    </div>
+                    <div class="col-8">
+                        @Model.Cliente.Direccion
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <strong>Cliente desde:</strong>
+                    </div>
+                    <div class="col-8">
+                        @Model.Cliente.FechaRegistro.ToString("dd/MM/yyyy")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información del Pedido -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-info-circle"></i> Información del Pedido
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <strong>Fecha del Pedido:</strong>
+                    </div>
+                    <div class="col-7">
+                        @Model.FechaPedido.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <strong>Estado Actual:</strong>
+                    </div>
+                    <div class="col-7">
+                        <form asp-action="CambiarEstadoPedido" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <select name="nuevoEstado" class="form-select form-select-sm"
+                                    onchange="confirmarCambio(this)" style="width: auto;">
+                                @{
+                                    var estados = new[] { "Pendiente", "Confirmado", "Enviado", "Entregado", "Cancelado" };
+                                }
+                                @foreach (var estado in estados)
+                                {
+                                    if (estado == Model.Estado)
+                                    {
+                                        <option value="@estado" selected>@estado</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@estado">@estado</option>
+                                    }
+                                }
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <strong>Total del Pedido:</strong>
+                    </div>
+                    <div class="col-7">
+                        <h5 class="text-primary mb-0">$@Model.Total.ToString("N2")</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <strong>Items Totales:</strong>
+                    </div>
+                    <div class="col-7">
+                        <span class="badge bg-primary">@Model.Detalles.Sum(d => d.Cantidad) productos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dirección de Envío -->
+@if (!string.IsNullOrEmpty(Model.DireccionEnvio))
+{
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-geo-alt"></i> Dirección de Envío
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.DireccionEnvio</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Observaciones -->
+@if (!string.IsNullOrEmpty(Model.Observaciones))
+{
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-chat-text"></i> Observaciones del Cliente
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">@Model.Observaciones</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Detalles de Productos -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-bag-check"></i> Productos del Pedido
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Descripción</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-end">Precio Unitario</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var detalle in Model.Detalles)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            @if (!string.IsNullOrEmpty(detalle.Producto.ImagenUrl))
+                                            {
+                                                <img src="@detalle.Producto.ImagenUrl" alt="@detalle.Producto.Nombre"
+                                                     class="me-3 rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                            }
+                                            else
+                                            {
+                                                <div class="me-3 bg-light rounded d-flex align-items-center justify-content-center"
+                                                     style="width: 50px; height: 50px;">
+                                                    <i class="bi bi-image text-muted"></i>
+                                                </div>
+                                            }
+                                            <div>
+                                                <strong>@detalle.Producto.Nombre</strong><br>
+                                                <small class="text-muted">ID: @detalle.Producto.Id</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">
+                                            @(detalle.Producto.Descripcion?.Length > 80 ?
+                                                detalle.Producto.Descripcion.Substring(0, 80) + "..." :
+                                                detalle.Producto.Descripcion ?? "Sin descripción")
+                                        </small>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge bg-primary fs-6">@detalle.Cantidad</span>
+                                    </td>
+                                    <td class="text-end">
+                                        $@detalle.PrecioUnitario.ToString("N2")
+                                    </td>
+                                    <td class="text-end">
+                                        <strong>$@detalle.Subtotal.ToString("N2")</strong>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot class="table-light">
+                            <tr>
+                                <th colspan="4" class="text-end">TOTAL DEL PEDIDO:</th>
+                                <th class="text-end">
+                                    <h5 class="text-primary mb-0">$@Model.Total.ToString("N2")</h5>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Acciones -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a asp-action="Pedidos" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Volver a Pedidos
+                        </a>
+                        <a asp-action="Pedidos" asp-route-estado="@Model.Estado" class="btn btn-outline-info">
+                            <i class="bi bi-funnel"></i> Ver otros "@Model.Estado"
+                        </a>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline-primary" onclick="window.print()">
+                            <i class="bi bi-printer"></i> Imprimir
+                        </button>
+                        <button class="btn btn-success" onclick="enviarEmail('@Model.Cliente.Email', '@Model.Id')">
+                            <i class="bi bi-envelope"></i> Notificar Cliente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmarCambio(select) {
+            const nuevoEstado = select.value;
+            const pedidoId = '@Model.Id';
+
+            if (confirm(`¿Está seguro de cambiar el estado del pedido #${pedidoId} a "${nuevoEstado}"?`)) {
+                select.form.submit();
+            } else {
+                // Revertir al valor original si cancela
+                select.value = '@Model.Estado';
+            }
+        }
+
+        function enviarEmail(email, pedidoId) {
+            const asunto = `Actualización de su pedido #${pedidoId}`;
+            const cuerpo = `Estimado cliente,\n\nSu pedido #${pedidoId} ha sido actualizado.\n\nGracias por confiar en nosotros.\n\nSaludos,\nEquipo JoyeriaWeb`;
+
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+        }
+
+        // Mejorar la experiencia de impresión
+        window.addEventListener('beforeprint', function() {
+            // Ocultar elementos que no queremos imprimir
+            document.querySelectorAll('.btn, .breadcrumb, nav').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('afterprint', function() {
+            // Restaurar elementos después de imprimir
+            document.querySelectorAll('.btn, .breadcrumb, nav').forEach(el => {
+                el.style.display = '';
+            });
+        });
+    </script>
+}

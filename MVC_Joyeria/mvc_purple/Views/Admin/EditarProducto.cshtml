@@ -1,0 +1,318 @@
+﻿@model mvc_purple.Models.Producto
+
+@{
+    ViewData["Title"] = $"Editar {Model.Nombre}";
+}
+
+<div class="row">
+    <div class="col-12 mb-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-action="Index" class="text-decoration-none">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-action="Productos" class="text-decoration-none">
+                        <i class="bi bi-bag"></i> Productos
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Editar Producto</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>
+                <i class="bi bi-pencil"></i> Editar Producto
+            </h2>
+            <a asp-action="Productos" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Volver a Productos
+            </a>
+        </div>
+        <hr />
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Información del Producto - ID: @Model.Id</h5>
+                <small class="text-muted">Creado: @Model.FechaCreacion.ToString("dd/MM/yyyy")</small>
+            </div>
+            <div class="card-body">
+                <form asp-action="EditarProducto" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="FechaCreacion" />
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Nombre" class="form-label">
+                                <i class="bi bi-tag"></i> Nombre del Producto *
+                            </label>
+                            <input asp-for="Nombre" class="form-control" placeholder="Ej: Anillo de Oro 18k" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Precio" class="form-label">
+                                <i class="bi bi-currency-dollar"></i> Precio *
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input asp-for="Precio" type="number" step="0.01" class="form-control" placeholder="0.00" />
+                            </div>
+                            <span asp-validation-for="Precio" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Stock" class="form-label">
+                                <i class="bi bi-boxes"></i> Stock Actual *
+                            </label>
+                            <input asp-for="Stock" type="number" class="form-control" placeholder="0" min="0" />
+                            <span asp-validation-for="Stock" class="text-danger"></span>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle"></i> Stock actual en inventario
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="ImagenUrl" class="form-label">
+                                <i class="bi bi-image"></i> URL de Imagen
+                            </label>
+                            <input asp-for="ImagenUrl" class="form-control" placeholder="https://ejemplo.com/imagen.jpg" />
+                            <span asp-validation-for="ImagenUrl" class="text-danger"></span>
+                            <div class="form-text">Opcional: URL de la imagen del producto</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Descripcion" class="form-label">
+                            <i class="bi bi-chat-text"></i> Descripción
+                        </label>
+                        <textarea asp-for="Descripcion" class="form-control" rows="4"
+                                  placeholder="Descripción detallada del producto..."></textarea>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="form-check">
+                                <input asp-for="Disponible" class="form-check-input" type="checkbox" />
+                                <label asp-for="Disponible" class="form-check-label">
+                                    <i class="bi bi-check-circle"></i> Producto disponible para venta
+                                </label>
+                            </div>
+                            <div class="form-text">
+                                Si está desmarcado, el producto no aparecerá en el catálogo
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Productos" class="btn btn-outline-secondary me-md-2">
+                            <i class="bi bi-x-circle"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Vista previa del producto -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="bi bi-eye"></i> Vista Previa del Producto</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="preview-image" class="position-relative">
+                            @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+                            {
+                                <img src="@Model.ImagenUrl" class="img-fluid rounded border"
+                                     style="height: 200px; width: 100%; object-fit: cover;"
+                                     alt="@Model.Nombre" id="imagen-preview">
+                            }
+                            else
+                            {
+                                <div class="bg-light d-flex align-items-center justify-content-center rounded border"
+                                     style="height: 200px;" id="imagen-preview">
+                                    <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
+                                </div>
+                            }
+                            @if (!Model.Disponible)
+                            {
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-50 rounded">
+                                    <span class="badge bg-danger fs-6">NO DISPONIBLE</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 id="preview-name">@Model.Nombre</h5>
+                        <p id="preview-description" class="text-muted">@Model.Descripcion</p>
+                        <h4 id="preview-price" class="text-primary">$@Model.Precio.ToString("N2")</h4>
+                        <div class="mb-2">
+                            <span id="preview-stock" class="badge bg-@(Model.Stock <= 5 ? "warning" : "success")">
+                                Stock: @Model.Stock
+                            </span>
+                            <span id="preview-disponible" class="badge bg-@(Model.Disponible ? "success" : "secondary")">
+                                @(Model.Disponible ? "Disponible" : "No Disponible")
+                            </span>
+                        </div>
+                        <small class="text-muted">
+                            <i class="bi bi-calendar"></i> Creado: @Model.FechaCreacion.ToString("dd/MM/yyyy")
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="bi bi-info-circle"></i> Información Adicional</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Estado del Producto:</h6>
+                        <ul class="list-unstyled">
+                            <li>
+                                <i class="bi bi-calendar text-primary"></i>
+                                Creado: @Model.FechaCreacion.ToString("dd/MM/yyyy HH:mm")
+                            </li>
+                            <li>
+                                <i class="bi bi-boxes text-info"></i>
+                                Stock: @Model.Stock unidades
+                            </li>
+                            <li>
+                                <i class="bi bi-@(Model.Disponible ? "check-circle text-success" : "x-circle text-danger")"></i>
+                                @(Model.Disponible ? "Disponible para venta" : "No disponible")
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Acciones Disponibles:</h6>
+                        <div class="d-grid gap-2">
+                            @if (Model.Disponible)
+                            {
+                                <button type="button" class="btn btn-sm btn-outline-warning"
+                                        onclick="toggleDisponibilidad(false)">
+                                    <i class="bi bi-pause-circle"></i> Deshabilitar Producto
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-sm btn-outline-success"
+                                        onclick="toggleDisponibilidad(true)">
+                                    <i class="bi bi-play-circle"></i> Habilitar Producto
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Vista previa en tiempo real
+        document.addEventListener('DOMContentLoaded', function() {
+            const nombreInput = document.querySelector('input[name="Nombre"]');
+            const descripcionInput = document.querySelector('textarea[name="Descripcion"]');
+            const precioInput = document.querySelector('input[name="Precio"]');
+            const stockInput = document.querySelector('input[name="Stock"]');
+            const imagenInput = document.querySelector('input[name="ImagenUrl"]');
+            const disponibleInput = document.querySelector('input[name="Disponible"]');
+
+            const previewName = document.getElementById('preview-name');
+            const previewDescription = document.getElementById('preview-description');
+            const previewPrice = document.getElementById('preview-price');
+            const previewStock = document.getElementById('preview-stock');
+            const previewDisponible = document.getElementById('preview-disponible');
+            const previewImage = document.getElementById('preview-image');
+
+            function updatePreview() {
+                // Actualizar textos
+                previewName.textContent = nombreInput.value || 'Nombre del producto';
+                previewDescription.textContent = descripcionInput.value || 'Descripción del producto';
+                previewPrice.textContent = '$' + (parseFloat(precioInput.value) || 0).toFixed(2);
+
+                // Actualizar stock con color
+                const stock = parseInt(stockInput.value) || 0;
+                previewStock.textContent = 'Stock: ' + stock;
+                previewStock.className = 'badge bg-' + (stock <= 5 ? 'warning' : 'success');
+
+                // Actualizar disponibilidad
+                const disponible = disponibleInput.checked;
+                previewDisponible.textContent = disponible ? 'Disponible' : 'No Disponible';
+                previewDisponible.className = 'badge bg-' + (disponible ? 'success' : 'secondary');
+
+                // Actualizar imagen
+                const imagenPreview = document.getElementById('imagen-preview');
+                if (imagenInput.value) {
+                    imagenPreview.innerHTML = `<img src="${imagenInput.value}" class="img-fluid rounded border" style="height: 200px; width: 100%; object-fit: cover;" onerror="this.style.display='none'">`;
+                } else {
+                    imagenPreview.innerHTML = '<div class="bg-light d-flex align-items-center justify-content-center rounded border" style="height: 200px;"><i class="bi bi-image text-muted" style="font-size: 3rem;"></i></div>';
+                }
+            }
+
+            // Event listeners
+            nombreInput.addEventListener('input', updatePreview);
+            descripcionInput.addEventListener('input', updatePreview);
+            precioInput.addEventListener('input', updatePreview);
+            stockInput.addEventListener('input', updatePreview);
+            imagenInput.addEventListener('input', updatePreview);
+            disponibleInput.addEventListener('change', updatePreview);
+        });
+
+        // Función para cambiar disponibilidad rápidamente
+        function toggleDisponibilidad(estado) {
+            const checkbox = document.querySelector('input[name="Disponible"]');
+            checkbox.checked = estado;
+
+            // Actualizar preview
+            const previewDisponible = document.getElementById('preview-disponible');
+            previewDisponible.textContent = estado ? 'Disponible' : 'No Disponible';
+            previewDisponible.className = 'badge bg-' + (estado ? 'success' : 'secondary');
+
+            // Actualizar botón
+            const button = event.target;
+            if (estado) {
+                button.innerHTML = '<i class="bi bi-pause-circle"></i> Deshabilitar Producto';
+                button.className = 'btn btn-sm btn-outline-warning';
+                button.onclick = () => toggleDisponibilidad(false);
+            } else {
+                button.innerHTML = '<i class="bi bi-play-circle"></i> Habilitar Producto';
+                button.className = 'btn btn-sm btn-outline-success';
+                button.onclick = () => toggleDisponibilidad(true);
+            }
+        }
+
+        // Confirmación antes de guardar
+        document.querySelector('form').addEventListener('submit', function(e) {
+            if (!confirm('¿Está seguro de guardar los cambios en este producto?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+}

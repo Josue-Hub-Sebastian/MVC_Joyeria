@@ -1,0 +1,228 @@
+﻿@model mvc_purple.Models.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard Administrativo";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>
+            <i class="bi bi-speedometer2"></i> Dashboard Administrativo
+        </h2>
+        <p class="text-muted">Resumen general del sistema</p>
+        <hr />
+    </div>
+</div>
+
+<!-- Tarjetas de estadísticas -->
+<div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">@Model.TotalPedidos</h4>
+                        <p class="mb-0">Total Pedidos</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-clipboard-check" style="font-size: 2rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Pedidos" class="text-white text-decoration-none">
+                    <small>Ver todos <i class="bi bi-arrow-right"></i></small>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">@Model.PedidosPendientes</h4>
+                        <p class="mb-0">Pendientes</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-clock" style="font-size: 2rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Pedidos" asp-route-estado="Pendiente" class="text-white text-decoration-none">
+                    <small>Ver pendientes <i class="bi bi-arrow-right"></i></small>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">@Model.TotalProductos</h4>
+                        <p class="mb-0">Productos</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-bag" style="font-size: 2rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a asp-action="Productos" class="text-white text-decoration-none">
+                    <small>Gestionar <i class="bi bi-arrow-right"></i></small>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="mb-0">$@Model.VentasDelMes.ToString("N0")</h4>
+                        <p class="mb-0">Ventas del Mes</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-graph-up" style="font-size: 2rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small>@DateTime.Now.ToString("MMMM yyyy")</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alertas -->
+@if (Model.ProductosBajoStock > 0)
+{
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle"></i>
+                <strong>Atención:</strong> Hay @Model.ProductosBajoStock producto(s) con stock bajo (≤5 unidades).
+                <a asp-action="Productos" class="alert-link">Ver productos</a>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Últimos pedidos -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock-history"></i> Últimos Pedidos
+                </h5>
+                <a asp-action="Pedidos" class="btn btn-sm btn-outline-primary">Ver todos</a>
+            </div>
+            <div class="card-body">
+                @if (Model.UltimosPedidos?.Any() == true)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var pedido in Model.UltimosPedidos)
+                                {
+                                    <tr>
+                                        <td><strong>#@pedido.Id</strong></td>
+                                        <td>@pedido.Cliente.Nombre</td>
+                                        <td>@pedido.FechaPedido.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td>
+                                            @switch (pedido.Estado)
+                                            {
+                                                case "Pendiente":
+                                                    <span class="badge bg-warning">@pedido.Estado</span>
+                                                    break;
+                                                case "Confirmado":
+                                                    <span class="badge bg-info">@pedido.Estado</span>
+                                                    break;
+                                                case "Enviado":
+                                                    <span class="badge bg-primary">@pedido.Estado</span>
+                                                    break;
+                                                case "Entregado":
+                                                    <span class="badge bg-success">@pedido.Estado</span>
+                                                    break;
+                                                default:
+                                                    <span class="badge bg-secondary">@pedido.Estado</span>
+                                                    break;
+                                            }
+                                        </td>
+                                        <td><strong>$@pedido.Total.ToString("N2")</strong></td>
+                                        <td>
+                                            <a asp-action="DetallePedido" asp-route-id="@pedido.Id"
+                                               class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center text-muted">
+                        <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+                        <p>No hay pedidos recientes</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Acciones rápidas -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-lightning"></i> Acciones Rápidas
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <a asp-action="CrearProducto" class="btn btn-success w-100">
+                            <i class="bi bi-plus-circle"></i> Nuevo Producto
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-action="Pedidos" asp-route-estado="Pendiente" class="btn btn-warning w-100">
+                            <i class="bi bi-clock"></i> Pedidos Pendientes
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-action="Productos" class="btn btn-info w-100">
+                            <i class="bi bi-bag"></i> Gestionar Productos
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-action="Pedidos" class="btn btn-primary w-100">
+                            <i class="bi bi-clipboard-check"></i> Todos los Pedidos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

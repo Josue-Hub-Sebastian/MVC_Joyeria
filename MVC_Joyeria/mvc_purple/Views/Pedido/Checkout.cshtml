@@ -1,0 +1,129 @@
+﻿@model mvc_purple.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Finalizar Compra";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>
+            <i class="bi bi-credit-card"></i> Finalizar Compra
+        </h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5><i class="bi bi-bag-check"></i> Resumen de Productos</h5>
+            </div>
+            <div class="card-body">
+                @foreach (var item in Model.ItemsCarrito)
+                {
+                    <div class="row align-items-center border-bottom py-2">
+                        <div class="col-md-6">
+                            <h6 class="mb-1">@item.NombreProducto</h6>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <span class="badge bg-primary">@item.Cantidad</span>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            $@item.Precio.ToString("N2")
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <strong>$@item.Subtotal.ToString("N2")</strong>
+                        </div>
+                    </div>
+                }
+                <div class="row mt-3">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4 text-end">
+                        <h5>Total: <span class="text-primary">$@Model.Total.ToString("N2")</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="bi bi-truck"></i> Información de Envío</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="ProcesarPedido" method="post">
+                    <div class="mb-3">
+                        <label for="direccionEnvio" class="form-label">
+                            <i class="bi bi-geo-alt"></i> Dirección de Envío *
+                        </label>
+                        <textarea name="direccionEnvio" id="direccionEnvio" class="form-control" rows="3"
+                                  required placeholder="Ingresa la dirección completa donde quieres recibir tu pedido"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="observaciones" class="form-label">
+                            <i class="bi bi-chat-text"></i> Observaciones (Opcional)
+                        </label>
+                        <textarea name="observaciones" id="observaciones" class="form-control" rows="2"
+                                  placeholder="Cualquier comentario adicional sobre tu pedido"></textarea>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-check-circle"></i> Confirmar Pedido
+                        </button>
+                        <a asp-controller="Home" asp-action="Carrito" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Volver al Carrito
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="bi bi-info-circle"></i> Información del Pedido</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <small class="text-muted">Cliente:</small><br>
+                    <strong>@User.Identity.Name</strong>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-muted">Método de Pago:</small><br>
+                    <span class="badge bg-info">Pago contra entrega</span>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-muted">Tiempo de entrega:</small><br>
+                    <span>3-5 días hábiles</span>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-muted">Costo de envío:</small><br>
+                    <span class="text-success"><strong>GRATIS</strong></span>
+                </div>
+
+                <hr>
+
+                <div class="text-center">
+                    <h5>Total a Pagar</h5>
+                    <h3 class="text-primary">$@Model.Total.ToString("N2")</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body text-center">
+                <i class="bi bi-shield-check text-success mb-2" style="font-size: 2rem;"></i>
+                <h6>Compra Segura</h6>
+                <small class="text-muted">
+                    Tu información está protegida y tu pedido será procesado de forma segura.
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

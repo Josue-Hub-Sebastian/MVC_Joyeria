@@ -1,0 +1,185 @@
+﻿@model IEnumerable<mvc_purple.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Gestión de Pedidos";
+    var estadoFiltro = ViewBag.EstadoFiltro as string;
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>
+            <i class="bi bi-clipboard-check"></i> Gestión de Pedidos
+        </h2>
+        <hr />
+    </div>
+</div>
+
+<!-- Filtros -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="bi bi-funnel"></i> Filtros</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="btn-group" role="group">
+                            <a asp-action="Pedidos" class="btn @(string.IsNullOrEmpty(estadoFiltro) ? "btn-primary" : "btn-outline-primary")">
+                                Todos
+                            </a>
+                            <a asp-action="Pedidos" asp-route-estado="Pendiente"
+                               class="btn @(estadoFiltro == "Pendiente" ? "btn-warning" : "btn-outline-warning")">
+                                Pendientes
+                            </a>
+                            <a asp-action="Pedidos" asp-route-estado="Confirmado"
+                               class="btn @(estadoFiltro == "Confirmado" ? "btn-info" : "btn-outline-info")">
+                                Confirmados
+                            </a>
+                            <a asp-action="Pedidos" asp-route-estado="Enviado"
+                               class="btn @(estadoFiltro == "Enviado" ? "btn-primary" : "btn-outline-primary")">
+                                Enviados
+                            </a>
+                            <a asp-action="Pedidos" asp-route-estado="Entregado"
+                               class="btn @(estadoFiltro == "Entregado" ? "btn-success" : "btn-outline-success")">
+                                Entregados
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lista de pedidos -->
+@if (Model?.Any() == true)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        Lista de Pedidos
+                        @if (!string.IsNullOrEmpty(estadoFiltro))
+                        {
+                            <span class="badge bg-secondary">@estadoFiltro</span>
+                        }
+                    </h5>
+                    <span class="text-muted">Total: @Model.Count() pedido(s)</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Email</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var pedido in Model)
+                                {
+                                    <tr>
+                                        <td><strong>#@pedido.Id</strong></td>
+                                        <td>@pedido.Cliente.Nombre</td>
+                                        <td>@pedido.Cliente.Email</td>
+                                        <td>
+                                            @pedido.FechaPedido.ToString("dd/MM/yyyy")<br>
+                                            <small class="text-muted">@pedido.FechaPedido.ToString("HH:mm")</small>
+                                        </td>
+                                        <td>
+                                            <form asp-action="CambiarEstadoPedido" method="post" class="d-inline">
+                                                <input type="hidden" name="id" value="@pedido.Id" />
+                                                <select name="nuevoEstado" class="form-select form-select-sm"
+                                                        onchange="this.form.submit()" style="width: auto;">
+                                                    @{
+                                                        var estados = new[] { "Pendiente", "Confirmado", "Enviado", "Entregado", "Cancelado" };
+                                                    }
+                                                    @foreach (var estado in estados)
+                                                    {
+                                                        if (estado == pedido.Estado)
+                                                        {
+                                                            <option value="@estado" selected>@estado</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@estado">@estado</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-primary">@pedido.Detalles.Count()</span>
+                                        </td>
+                                        <td><strong>$@pedido.Total.ToString("N2")</strong></td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a asp-action="DetallePedido" asp-route-id="@pedido.Id"
+                                                   class="btn btn-outline-primary" title="Ver detalle">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <div class="mb-4">
+                    <i class="bi bi-inbox text-muted" style="font-size: 4rem;"></i>
+                </div>
+                <h3>No hay pedidos</h3>
+                <p class="text-muted">
+                    @if (!string.IsNullOrEmpty(estadoFiltro))
+                    {
+                        <span>No hay pedidos con estado "@estadoFiltro"</span>
+                    }
+                    else
+                    {
+                        <span>Aún no se han realizado pedidos</span>
+                    }
+                </p>
+                <a asp-action="Index" class="btn btn-primary">
+                    <i class="bi bi-arrow-left"></i> Volver al Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Confirmación al cambiar estado
+        document.querySelectorAll('select[name="nuevoEstado"]').forEach(function(select) {
+            select.addEventListener('change', function(e) {
+                if (!confirm('¿Está seguro de cambiar el estado de este pedido?')) {
+                    e.preventDefault();
+                    // Revertir al valor original
+                    this.selectedIndex = Array.from(this.options).findIndex(option =>
+                        option.textContent === this.getAttribute('data-original'));
+                }
+            });
+
+            // Guardar valor original
+            select.setAttribute('data-original', select.options[select.selectedIndex].textContent);
+        });
+    </script>
+}

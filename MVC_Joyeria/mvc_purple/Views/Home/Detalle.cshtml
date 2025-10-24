@@ -1,0 +1,218 @@
+﻿@model mvc_purple.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<div class="row">
+    <div class="col-12 mb-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-action="Index" class="text-decoration-none">
+                        <i class="bi bi-house"></i> Inicio
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Nombre</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <!-- Imagen del producto -->
+        <div class="card">
+            <div class="card-body p-0">
+                @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+                {
+                    <img src="@Model.ImagenUrl" class="card-img-top" alt="@Model.Nombre"
+                         style="height: 400px; object-fit: cover; width: 100%;">
+                }
+                else
+                {
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                        <div class="text-center">
+                            <i class="bi bi-image text-muted" style="font-size: 4rem;"></i>
+                            <p class="text-muted mt-2">Sin imagen disponible</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <!-- Información del producto -->
+        <div class="card h-100">
+            <div class="card-body">
+                <h1 class="card-title h2 mb-3">@Model.Nombre</h1>
+
+                <div class="mb-4">
+                    <h3 class="text-primary mb-0">$@Model.Precio.ToString("N2")</h3>
+                    <small class="text-muted">Precio incluye IVA</small>
+                </div>
+
+                <div class="mb-4">
+                    <h6>Descripción:</h6>
+                    <p class="text-muted">
+                        @if (!string.IsNullOrEmpty(Model.Descripcion))
+                        {
+                            @Model.Descripcion
+                        }
+                        else
+                        {
+                            <span class="text-muted">No hay descripción disponible para este producto.</span>
+                        }
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Disponibilidad:</h6>
+                            @if (Model.Disponible && Model.Stock > 0)
+                            {
+                                <span class="badge bg-success fs-6">
+                                    <i class="bi bi-check-circle"></i> En Stock
+                                </span>
+                            }
+                            else if (Model.Stock == 0)
+                            {
+                                <span class="badge bg-danger fs-6">
+                                    <i class="bi bi-x-circle"></i> Agotado
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary fs-6">
+                                    <i class="bi bi-pause-circle"></i> No Disponible
+                                </span>
+                            }
+                        </div>
+                        <div class="col-6">
+                            <h6>Stock disponible:</h6>
+                            <span class="badge bg-info fs-6">@Model.Stock unidades</span>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.Disponible && Model.Stock > 0)
+                {
+                    <div class="mb-4">
+                        <h6>Cantidad:</h6>
+                        <form asp-controller="Home" asp-action="AgregarAlCarrito" method="post" id="formAgregar">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <input type="hidden" name="productoId" value="@Model.Id" />
+                                    <input type="number" name="cantidad" value="1" min="1" max="@Model.Stock"
+                                           class="form-control" id="cantidadInput">
+                                </div>
+                                <div class="col-8">
+                                    @if (User.Identity.IsAuthenticated && !User.HasClaim("EsAdmin", "True"))
+                                    {
+                                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-cart-plus"></i> Agregar al Carrito
+                                        </button>
+                                    }
+                                    else if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <a asp-controller="Cliente" asp-action="Login" class="btn btn-warning btn-lg w-100">
+                                            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión para Comprar
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Los administradores no pueden comprar productos</span>
+                                    }
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+
+                <hr>
+
+                <!-- Información adicional -->
+                <div class="mb-3">
+                    <h6>Información del producto:</h6>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-shield-check text-success"></i> Garantía de calidad</li>
+                        <li><i class="bi bi-truck text-primary"></i> Envío gratuito</li>
+                        <li><i class="bi bi-arrow-clockwise text-info"></i> Devolución en 30 días</li>
+                        <li><i class="bi bi-credit-card text-warning"></i> Pago contra entrega</li>
+                    </ul>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Volver al Catálogo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Productos relacionados o sugeridos -->
+<div class="row mt-5">
+    <div class="col-12">
+
+
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i>
+            <strong>¿Necesitas ayuda?</strong> Contáctanos para asesoría personalizada sobre nuestras joyas.
+            <br>
+            <small>
+                <i class="bi bi-telephone"></i> Teléfono: +51 999 123 456 |
+                <i class="bi bi-envelope"></i> Email: purplesky@gmail.com
+            </small>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Validar cantidad al enviar el formulario
+        document.getElementById('formAgregar')?.addEventListener('submit', function(e) {
+            const cantidadInput = document.getElementById('cantidadInput');
+            const cantidad = parseInt(cantidadInput.value);
+            const stockMaximo = parseInt(cantidadInput.getAttribute('max'));
+
+            if (cantidad < 1) {
+                e.preventDefault();
+                alert('La cantidad debe ser mayor a 0');
+                cantidadInput.focus();
+                return false;
+            }
+
+            if (cantidad > stockMaximo) {
+                e.preventDefault();
+                alert(`Solo hay ${stockMaximo} unidades disponibles`);
+                cantidadInput.focus();
+                return false;
+            }
+
+            // Confirmar agregado al carrito
+            if (confirm(`¿Agregar ${cantidad} unidad(es) de "@Model.Nombre" al carrito?`)) {
+                return true;
+            } else {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Actualizar precio total al cambiar cantidad
+        document.getElementById('cantidadInput')?.addEventListener('input', function() {
+            const cantidad = parseInt(this.value) || 1;
+            const precioUnitario = @Model.Precio;
+            const total = cantidad * precioUnitario;
+
+            // Si hay un elemento para mostrar total, actualizarlo
+            const totalElement = document.getElementById('totalPrice');
+            if (totalElement) {
+                totalElement.textContent = '$' + total.toFixed(2);
+            }
+        });
+    </script>
+}
