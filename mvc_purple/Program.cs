@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using mvc_purple.Services;
 using System;
 using System.Net.Http.Headers;
+using mvc_purple.Data;
+using mvc_purple.api.IServices;
+using mvc_purple.api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +39,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.SlidingExpiration = true;
         options.Cookie.Name = "PurpleSkyAuth";
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireClaim("EsAdmin", "True"));
+});
+
 
 // ================================
 // CONFIGURACIÓN DE CONEXIÓN API

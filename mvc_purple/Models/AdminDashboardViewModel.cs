@@ -1,4 +1,6 @@
-﻿namespace mvc_purple.Models
+﻿using mvc_purple.DTO.Response;
+
+namespace mvc_purple.Models
 {
     public class AdminDashboardViewModel
     {
@@ -7,6 +9,6 @@
         public int TotalProductos { get; set; }
         public int ProductosBajoStock { get; set; }
         public decimal VentasDelMes { get; set; }
-        public List<Pedido> UltimosPedidos { get; set; } = new List<Pedido>();
+        public List<PedidoResponse> UltimosPedidos { get; set; } = new();
     }
 }

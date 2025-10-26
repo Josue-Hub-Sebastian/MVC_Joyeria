@@ -7,28 +7,25 @@ namespace mvc_purple.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El nombre del producto es obligatorio")]
-        [StringLength(100, ErrorMessage = "El nombre no puede exceder 100 caracteres")]
-        public required string Nombre { get; set; }
+        [StringLength(100)]
+        public string Nombre { get; set; } = string.Empty;
 
         [StringLength(500)]
-        public required string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
-        [Required(ErrorMessage = "El precio es obligatorio")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "El precio debe ser mayor a 0")]
+        [Required]
         public decimal Precio { get; set; }
 
-        [Required(ErrorMessage = "El stock es obligatorio")]
-        [Range(0, int.MaxValue, ErrorMessage = "El stock no puede ser negativo")]
+        [Required]
         public int Stock { get; set; }
-
-        [StringLength(255)]
-        public string? ImagenUrl { get; set; }
 
         public bool Disponible { get; set; } = true;
 
+        public string? ImagenUrl { get; set; }
+
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
-        // Relación con detalles de pedido
-        public virtual ICollection<DetallePedido> DetallesPedido { get; set; } = new List<DetallePedido>();
+        // Esta propiedad puede ser útil si tu API incluye la relación inversa
+        public List<DetallePedido>? DetallesPedido { get; set; }
     }
 }

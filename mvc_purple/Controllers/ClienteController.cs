@@ -1,14 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using mvc_purple.api.IServices;
 using mvc_purple.Models;
-using mvc_purple.Services;
-using System.Text.Json;
+using System.Security.Claims;
 
 namespace mvc_purple.Controllers
 {
     public class ClienteController : Controller
     {
         private readonly IClienteApiService _clienteService;
-        public ClienteController(IClienteApiService clienteService) => _clienteService = clienteService;
+        private readonly IPedidoApiService _pedidoService;
+
+        public ClienteController(IClienteApiService clienteService, IPedidoApiService pedidoService)
+        {
+            _clienteService = clienteService;
+            _pedidoService = pedidoService;
+        }
 
         public async Task<IActionResult> Index()
         {
@@ -35,15 +43,16 @@ namespace mvc_purple.Controllers
             return RedirectToAction("Login");
         }
 
-        public IActionResult Login()
+        public async Task<IActionResult> MisPedidos()
         {
-            // Si ya hay sesión activa, redirige al home
-            var clienteActivo = HttpContext.Session.GetString("ClienteActivo");
-            if (!string.IsNullOrEmpty(clienteActivo))
-                return RedirectToAction("Index", "Home");
+            var cliente = _clienteService.GetClienteActivo();
+            if (cliente == null) return RedirectToAction("Login", "Cliente");
 
-            return View();
+            var pedidos = await _pedidoService.GetByClienteAsync(cliente.Id);
+            return View(pedidos);
         }
+
+        public IActionResult Login() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,6 +71,30 @@ namespace mvc_purple.Controllers
                 return View();
             }
 
+            var cliente = _clienteService.GetClienteActivo();
+            if (cliente == null)
+            {
+                ModelState.AddModelError("", "Error al cargar los datos del cliente.");
+                return View();
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, cliente.Nombre),
+                new Claim(ClaimTypes.Email, cliente.Email),
+                new Claim("EsAdmin", cliente.EsAdmin.ToString())
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
+                new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTime.UtcNow.AddHours(8)
+                });
+
             TempData["Success"] = "Inicio de sesión exitoso.";
             return RedirectToAction("Index", "Home");
         }
@@ -69,6 +102,9 @@ namespace mvc_purple.Controllers
         public async Task<IActionResult> Logout()
         {
             await _clienteService.LogoutAsync();
+
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
             TempData["Success"] = "Sesión cerrada correctamente.";
             return RedirectToAction("Index", "Home");
         }

@@ -52,6 +52,7 @@
             </div>
             <div class="card-body">
                 <form asp-action="ProcesarPedido" method="post">
+                    @Html.AntiForgeryToken()
                     <div class="mb-3">
                         <label for="direccionEnvio" class="form-label">
                             <i class="bi bi-geo-alt"></i> Dirección de Envío *

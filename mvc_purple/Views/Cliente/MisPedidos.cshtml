@@ -1,4 +1,5 @@
-﻿@model IEnumerable<mvc_purple.Models.Pedido>
+﻿@using mvc_purple.DTO.Response
+@model IEnumerable<PedidoResponse>
 
 @{
     ViewData["Title"] = "Mis Pedidos";
@@ -62,7 +63,7 @@
                             <small class="text-muted">Productos (@pedido.Detalles.Count()):</small><br>
                             @foreach (var detalle in pedido.Detalles.Take(2))
                             {
-                                <span class="badge bg-light text-dark me-1">@detalle.Producto.Nombre x@detalle.Cantidad</span>
+                                <span class="badge bg-light text-dark me-1">@detalle.ProductoNombre x@detalle.Cantidad</span>
                             }
                             @if (pedido.Detalles.Count() > 2)
                             {
@@ -132,7 +133,7 @@
                                         @foreach (var detalle in pedido.Detalles)
                                         {
                                             <tr>
-                                                <td>@detalle.Producto.Nombre</td>
+                                                <td>@detalle.ProductoNombre</td>
                                                 <td>@detalle.Cantidad</td>
                                                 <td>$@detalle.PrecioUnitario.ToString("N2")</td>
                                                 <td>$@detalle.Subtotal.ToString("N2")</td>
